@@ -1,0 +1,130 @@
+Hulk is a small framework created to help run little scripts written in Boo.
+
+Simple script execution
+_______________________
+
+The main idea, is that you write some script that contain classes and methods, 
+and you can can call those methods from the command line.
+
+For example:
+
+class SayHello:
+	def Hello(name as string):
+		print "Hello ${name}"
+		
+Can be changed to:
+
+class SayHello(Hulk):
+	def Hello(name as string):
+		print "Hello ${name} !!"
+
+and saved in a Hulkfile
+
+And when run like this:
+
+> hulk SayHello.Hello Georges
+
+Would output:
+
+> Hello Georges !!
+
+In reality, for simple cases, where your class do not has a base class, 
+you do not need to change the script at all and can run the command, with 
+the class unchanged and it will work.
+
+Task dependency
+_______________
+
+Hulk also support task dependency, using the dependsOn command.
+
+You can write something like:
+
+class SayHello:
+	def Hello(name as string):
+		dependsOn Wake(name)
+		dependsOn Wake("someone else")
+		print "Hello ${name} !!"
+
+	def Wake(name as string):
+		print "Wake ${name} !!!!"
+
+And the result for:
+
+> hulk SayHello.Hello Georges
+
+would be:
+
+> Wake Georges !!
+> Hello Georges !!
+
+The Wake task will be called only once.
+
+Automatic parameter conversion
+______________________________
+
+Hulk makes it easy to call tasks that need parameters of other types than strings
+
+Example:
+
+class Server:
+	def Start(serverName as string, maxRetries as int):
+		for c in range(maxRetries):
+			tryToStartServer(serverName)
+			
+Now, calling hulk like:
+
+> hulk Server.Start localhost 10
+
+Would try to execute tryToStartServer 10 times. 
+The second parameter is automatically converted from string to int
+
+Support a facilities
+____________________
+
+Hulk scripts can be augmented with facilities to execute common script tasks
+
+The default Hulk setup has some facilities for example to work with files and directories.
+So it's valid to write some code like this:
+
+import Hulk.Facilities.IO
+
+class MyProject:
+	BUILD_DIR 	= "./build"
+	BIN_DIR 	= "./bin"
+	LIBS_DIR 	= "./libs"
+	
+	def clean():
+		removeDir(BUILD_DIR)
+		removeDir(BIN_DIR)
+		
+	def build():
+		dependsOn clean
+		
+		makeDir(BUILD_DIR)
+		copy(fileset("${LIBS_DIR}/*.dll"), BUILD_DIR)
+  		
+		compile()
+		
+	private def compile():
+		# do compilation stuff
+		pass
+		
+And other facilities can be installed with Hulk, like compilation facilities, shell facilities, and others.
+
+Further work
+____________
+
+* Add more facilities as needed
+* Load files from tasks/*.hulk
+* Make script loading and task loading aware of different versions for different OSes
+
+Thanks
+______
+
+Thanks a lot for those guys
+
+Rodrigo "Bamboo" de Oliveira for the awesome language that makes this possible.
+Everton "Pluguinho" Ribeiro for showing me Thor, the inspiration for this project.
+Thats it for now.
+
+Hulk smash little tasks !!

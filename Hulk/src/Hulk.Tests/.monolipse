@@ -1,0 +1,14 @@
+<settings>
+  <language>boo</language>
+  <outputType>library</outputType>
+  <references>
+    <monolipse.core.internal.LocalAssemblyReference-Remembrance>
+      <path>/Hulk/lib/BooSpec.dll</path>
+    </monolipse.core.internal.LocalAssemblyReference-Remembrance>
+    <monolipse.core.internal.AssemblySourceReference-Remembrance>
+      <path>/Hulk/src/Hulk.Core</path>
+    </monolipse.core.internal.AssemblySourceReference-Remembrance>
+  </references>
+  <outputFolder>/Hulk/bin</outputFolder>
+  <additionalOptions></additionalOptions>
+</settings>

@@ -1,0 +1,14 @@
+<settings>
+  <language>boo</language>
+  <outputType>exe</outputType>
+  <references>
+    <monolipse.core.internal.AssemblySourceReference-Remembrance>
+      <path>/Hulk/src/Hulk.Core</path>
+    </monolipse.core.internal.AssemblySourceReference-Remembrance>
+    <monolipse.core.internal.AssemblySourceReference-Remembrance>
+      <path>/Boobel/src/Boobel</path>
+    </monolipse.core.internal.AssemblySourceReference-Remembrance>
+  </references>
+  <outputFolder>/Hulk/bin</outputFolder>
+  <additionalOptions></additionalOptions>
+</settings>

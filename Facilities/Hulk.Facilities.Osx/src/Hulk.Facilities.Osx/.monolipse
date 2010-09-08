@@ -1,0 +1,17 @@
+<settings>
+  <language>boo</language>
+  <outputType>library</outputType>
+  <references>
+    <monolipse.core.internal.AssemblySourceReference-Remembrance>
+      <path>/Hulk/src/Hulk.Core</path>
+    </monolipse.core.internal.AssemblySourceReference-Remembrance>
+    <monolipse.core.internal.GlobalAssemblyCacheReference-Remembrance>
+      <name>Mono.Posix</name>
+      <version>2.0.0.0</version>
+      <culture>neutral</culture>
+      <token>0738eb9f132ed756</token>
+    </monolipse.core.internal.GlobalAssemblyCacheReference-Remembrance>
+  </references>
+  <outputFolder>/Hulk.Facilities.Osx/bin</outputFolder>
+  <additionalOptions></additionalOptions>
+</settings>

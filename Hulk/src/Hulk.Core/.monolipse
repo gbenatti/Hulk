@@ -1,0 +1,11 @@
+<settings>
+  <language>boo</language>
+  <outputType>library</outputType>
+  <references>
+    <monolipse.core.internal.AssemblySourceReference-Remembrance>
+      <path>/Boobel/src/Boobel</path>
+    </monolipse.core.internal.AssemblySourceReference-Remembrance>
+  </references>
+  <outputFolder>/Hulk/bin</outputFolder>
+  <additionalOptions></additionalOptions>
+</settings>

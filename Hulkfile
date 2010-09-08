@@ -1,0 +1,34 @@
+import Hulk.Facilities.IO
+import Hulk.Facilities.Osx.IO
+
+class Project:
+	BOOT_PATH = "./bootstrap/"
+	EXECUTABLE = BOOT_PATH + "Hulk.exe"
+	TARGET_PATH = "/usr/local/hulk/"
+	
+	SCRIPT_FILE = "/usr/local/bin/hulk"
+	SCRIPT_CONTENT = """#!/bin/sh
+mono /usr/local/hulk/Hulk.exe "$@"
+"""
+	
+	def install():
+	"""Install hulk executable and dependencies to '/usr/local/hulk/'"""
+	
+		if exist(EXECUTABLE):
+			assertTargetPathExists(TARGET_PATH)
+			
+			print "Copying executable and dependencies to: ${TARGET_PATH}"
+			copy(fileset("${BOOT_PATH}*.exe"), TARGET_PATH, true)
+			copy(fileset("${BOOT_PATH}*.dll"), TARGET_PATH, true)
+			
+			print "Adding hulk script..."
+			writeTextFile(SCRIPT_FILE, SCRIPT_CONTENT)
+			changeMod(SCRIPT_FILE, 775)
+		else:
+			print "Hulk executable not found at ${BOOT_PATH} !!"
+			
+	private def assertTargetPathExists(path as string):
+		if not exist(path): makeDir(path)
+		
+	def update():
+		raise "Not implemented"
